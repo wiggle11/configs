@@ -1,0 +1,7 @@
+
+mysql/data
+elasticsearch/data
+mattermost/plugins
+redmine/data
+owncloud/data
+

@@ -1,0 +1,13 @@
+[Unit]
+Description=Foo
+After=network.target mysql.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/bash -c "echo foo"
+ExecStart=/usr/sbin/foo-daemon
+ExecStartPost=/bin/bash -c "echo bar"
+
+[Install]
+WantedBy=multi-user.target
+

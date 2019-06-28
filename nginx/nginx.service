@@ -1,0 +1,11 @@
+[Unit]
+Description=NGINX
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name nginx --net internal -p 443:443 -v /opt/configs/nginx/config:/etc/nginx/conf.d nginx:1.17
+
+[Install]
+WantedBy=multi-user.target
+

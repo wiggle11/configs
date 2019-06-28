@@ -1,0 +1,11 @@
+[Unit]
+Description=MySQL
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name mysql --net internal -e MYSQL_ROOT_PASSWORD=supersecret -v /opt/configs/mysql/data:/var/lib/mysql mysql:5.7
+
+[Install]
+WantedBy=multi-user.target
+

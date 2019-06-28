@@ -1,0 +1,12 @@
+[Unit]
+Description=owncloud
+After=mysql.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/chown -R 33:33 /opt/configs/owncloud/data
+ExecStart=/usr/bin/docker run --rm --name owncloud --net internal -v /opt/configs/owncloud/data:/var/www/html -v /opt/configs/owncloud/config:/var/www/html/config owncloud:9.1.8
+
+[Install]
+WantedBy=multi-user.target
+

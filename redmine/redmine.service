@@ -1,0 +1,11 @@
+[Unit]
+Description=Redmine
+After=mysql.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name redmine --network internal -v /opt/configs/redmine/data:/usr/src/redmine/files -e REDMINE_DB_MYSQL=mysql -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=redmine redmine:4.0.4
+
+[Install]
+WantedBy=multi-user.target
+

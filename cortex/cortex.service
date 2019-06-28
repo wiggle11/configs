@@ -1,0 +1,11 @@
+[Unit]
+Description=TheHive
+After=elasticsearch.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name hive --net internal thehiveproject/cortex:3.0.0-RC3
+
+[Install]
+WantedBy=multi-user.target
+

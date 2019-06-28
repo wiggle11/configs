@@ -1,0 +1,13 @@
+[Unit]
+Description=Elasticsearch
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/chown -R 1000:1000 /opt/configs/elasticsearch/data
+ExecStartPre=/usr/sbin/sysctl -w vm.max_map_count=262144
+ExecStart=/usr/bin/docker run --rm --name elasticsearch --net internal -v /opt/configs/elasticsearch/data:/usr/share/elasticsearch/data -e http.host=0.0.0.0 -e cluster.name=hive -e thread_pool.index.queue_size=100000 -e thread_pool.search.queue_size=100000 -e thread_pool.bulk.queue_size=100000 docker.elastic.co/elasticsearch/elasticsearch:6.8.0
+
+[Install]
+WantedBy=multi-user.target
+

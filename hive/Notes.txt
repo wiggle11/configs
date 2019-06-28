@@ -1,0 +1,1 @@
+Hive container is not properly mount conf volume. Think there's a permission issue.

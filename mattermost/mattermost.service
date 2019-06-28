@@ -1,0 +1,11 @@
+[Unit]
+Description=Mattermost
+After=mysql.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name mattermost --net internal -v /opt/configs/mattermost/plugins:/mattermost/plugins -v /opt/configs/mattermost/config:/mattermost/config -e "MM_USERNAME=mattermost" -e "MM_PASSWORD=mattermost" -e "MM_DBNAME=mattermost" -e "DB_PORT_NUMBER=3306" -e "DB_HOST=mysql" -e "MM_SQLSETTINGS_DRIVERNAME=mysql" -e "MM_SQLSETTINGS_DATASOURCE=mattermost:mattermost@tcp(mysql:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s" mattermost/mattermost-prod-app:5.12.1
+
+[Install]
+WantedBy=multi-user.target
+

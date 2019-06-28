@@ -1,0 +1,11 @@
+[Unit]
+Description=TheHive
+After=elasticsearch.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name hive --net internal -v /opt/configs/hive/conf:/opt/thehive/conf thehiveproject/thehive:3.3.1
+
+[Install]
+WantedBy=multi-user.target
+

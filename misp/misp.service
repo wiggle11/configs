@@ -1,0 +1,13 @@
+[Unit]
+Description=MISP
+After=network.target mysql.service
+
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/mkdir /opt/configs/misp/data
+ExecStartPre=-/usr/bin/chown -R 103:104 /opt/configs/misp/data
+ExecStart=/usr/bin/docker run --rm --name misp --net internal --ip 10.0.1.8 -v /opt/configs/misp/data:/var/lib/mysql harvarditsecurity/misp:latest
+
+[Install]
+WantedBy=multi-user.target
+

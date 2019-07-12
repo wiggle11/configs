@@ -4,7 +4,7 @@ After=elasticsearch.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/docker run --rm --name hive --net internal -v /opt/configs/hive/conf:/opt/thehive/conf thehiveproject/thehive:3.3.1
+ExecStart=/usr/bin/docker run --rm --name hive --net internal --ip 10.0.1.33 --volume /opt/configs/hive/conf/application.conf:/etc/thehive/application.conf thehiveproject/thehive:3.4.0-RC1
 
 [Install]
 WantedBy=multi-user.target

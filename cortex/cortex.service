@@ -4,7 +4,8 @@ After=elasticsearch.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/docker run --rm --name hive --net internal thehiveproject/cortex:3.0.0-RC3
+ExecStart=/usr/bin/docker run --rm --name cortex --net internal --ip 10.0.1.11 --volume /opt/configs/cortex/conf/application.conf:/etc/cortex/application.conf thehiveproject/cortex:3.0.0-RC3 --es-uri http://10.0.1.10:9200
+ExecStop=/usr/bin/docker stop cortex
 
 [Install]
 WantedBy=multi-user.target

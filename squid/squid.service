@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/docker run --rm --name squid --net internal --ip 10.0.1.250 -v /opt/configs/squid/data:/var/spool/squid -v /opt/configs/squid/squid.conf:/etc/squid/squid.conf sameersbn/squid:3.5.27-2
+ExecStart=/usr/bin/docker run --rm --name squid --net internal --ip 10.0.1.250 -p 3128:3128 -v /opt/configs/squid/data:/var/spool/squid -v /opt/configs/squid/squid.conf:/etc/squid/squid.conf sameersbn/squid:3.5.27-2
+ExecStop=/usr/bin/docker stop squid
 
 [Install]
 WantedBy=multi-user.target

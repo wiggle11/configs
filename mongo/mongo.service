@@ -1,0 +1,11 @@
+[Unit]
+Description=MongoDB
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name mongo --net internal --ip 10.0.1.13 -v /opt/configs/mongo/dump:/data/dump -v /opt/configs/mongo/data:/data/db mongo:4.1.13 mongod --oplogSize 128 --replSet rs0
+
+[Install]
+WantedBy=multi-user.target
+

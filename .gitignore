@@ -1,7 +1,13 @@
 
-mysql/data
-elasticsearch/data
-mattermost/plugins
-redmine/data
+mysql/data/
+xwiki/data/
+elasticsearch/data/
+freeipa/data
 owncloud/data
-
+redmine/data
+mattermost/plugins
+nginx/config/cert.pem
+nginx/config/key.pem
+mongo/data
+chat/data
+misp/data/

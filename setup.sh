@@ -16,7 +16,7 @@ echo Add services to hosts file
 
 for service in "${FILES[@]}"; do
   if [ "$(grep $service.lan /etc/hosts)" == "" ]; then 
-    echo "127.0.0.1      $service.lan" >> /etc/hosts
+    echo "10.0.1.1      $service.lan" >> /etc/hosts
   fi
 done
 

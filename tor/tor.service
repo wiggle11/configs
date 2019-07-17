@@ -1,0 +1,12 @@
+[Unit]
+Description=Tor Proxy
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name tor --net internal --ip 10.0.1.251 -p 8118:8118 dperson/torproxy
+ExecStop=/usr/bin/docker stop tor
+
+[Install]
+WantedBy=multi-user.target
+

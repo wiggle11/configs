@@ -99,11 +99,11 @@ for service in "${FILES[@]}"; do
     docker run --rm --net internal --name init-mongo -v /opt/configs/mongo/data:/data/db mongo:4.1.13 /bin/bash -c "for i in {1..30}; do mongo mongo/rocketchat --eval \"rs.initiate({ _id: 'rs0', members: [ { _id: 0, host: 'localhost:27017' } ]})\" && s=$? && break || s=$?; echo \"Tried $i times. Waiting 5 secs...\"; sleep 5; done; (exit $s)"
   fi
 
-  # Owncloud post setup
-  if [ "$service" == "owncloud" ]; then
-    echo Owncloud setup
+  # Cloud post setup
+  if [ "$service" == "cloud" ]; then
+    echo Cloud setup
     sleep 15
-    curl -s -k -X POST -F "install=true" -F "adminlogin=Administrator" -F "adminpass=supersecret" -F "adminpass-clone=supersecret" -F "directory=/var/www/html/data" -F "dbtype=mysql" -F "dbuser=owncloud" -F "dbpass=owncloud" -F "dbpass-clone=owncloud" -F "dbname=owncloud" -F "dbhost=mysql" https://owncloud.lan/index.php
+    curl -s -k -X POST -F "install=true" -F "adminlogin=Administrator" -F "adminpass=supersecret" -F "adminpass-clone=supersecret" -F "directory=/var/www/html/data" -F "dbtype=mysql" -F "dbuser=cloud" -F "dbpass=cloud" -F "dbpass-clone=cloud" -F "dbname=cloud" -F "dbhost=mysql" https://cloud.lan/index.php
   fi
 
   # Freeipa

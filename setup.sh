@@ -46,6 +46,7 @@ for service in "${FILES[@]}"; do
     docker stop mysql 2>&1 > /dev/null
     rm -f /tmp/sql.tmp
   fi
+
   # MISP pre install
     if [ "$service" == "misp" ]; then
     echo Initialize MISP database
@@ -90,6 +91,12 @@ for service in "${FILES[@]}"; do
 
   if [ "$(grep $service /root/.iv)" != "" ]; then
     continue
+  fi
+
+  # MongoDB post setup
+  if [ "$service" == "mongo" ]; then
+    echo Initialize MongoDB
+    docker run --rm --net internal --name init-mongo -v /opt/configs/mongo/data:/data/db mongo:4.1.13 /bin/bash -c "for i in {1..30}; do mongo mongo/rocketchat --eval \"rs.initiate({ _id: 'rs0', members: [ { _id: 0, host: 'localhost:27017' } ]})\" && s=$? && break || s=$?; echo \"Tried $i times. Waiting 5 secs...\"; sleep 5; done; (exit $s)"
   fi
 
   # Owncloud post setup

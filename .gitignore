@@ -3,7 +3,7 @@ mysql/data/
 xwiki/data/
 elasticsearch/data/
 freeipa/data
-owncloud/data
+cloud/data
 redmine/data
 mattermost/plugins
 nginx/config/cert.pem
